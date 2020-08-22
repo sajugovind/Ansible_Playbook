@@ -42,7 +42,7 @@
                 proxy_pass http://10.14.71.236:4000;
                 proxy_set_header Authorization "";
                 proxy_read_timeout 90s;
-            }
+            },
 	   location /admin {
                 proxy_pass http://10.14.71.236:4001;
                 proxy_set_header Authorization "";
