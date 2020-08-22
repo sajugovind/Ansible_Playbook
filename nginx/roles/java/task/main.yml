@@ -1,0 +1,31 @@
+---
+- name: Install Java From Apt-Get
+  become: yes
+  apt:
+    name: java-1.8.0-openjdk
+    state: latest
+
+- name: Create directory for java deplyment
+  become: yes
+  file:
+    path: /root/app
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy file with owner and permissions
+  become: yes
+  copy:
+    src: /home/halodoc/deploy
+    dest: /root/app/
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Disable NGINX Default Virtual Host
+  become: yes
+  command:
+    cmd: java -jar simple-application.jar server simple.yml
+~
+~
