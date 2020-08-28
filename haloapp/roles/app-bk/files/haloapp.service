@@ -1,0 +1,10 @@
+[Unit]
+Description=haloapp
+
+[Service]
+User=root
+Group=root
+ExecStart=java -jar /root/app/simple-application.jar server /root/app/simple.yml
+
+[Install]
+WantedBy=multi-user.target

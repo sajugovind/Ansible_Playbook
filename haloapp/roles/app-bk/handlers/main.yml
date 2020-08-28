@@ -1,0 +1,7 @@
+---
+- name: Start haloapp
+  become: yes
+  systemd:
+    name: haloapp
+    state: started
+    enabled: yes

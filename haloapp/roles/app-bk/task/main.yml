@@ -1,0 +1,36 @@
+---
+- name: Install Java From Apt-Get
+  become: yes
+  apt:
+    name: java-1.8.0-openjdk
+    state: latest
+
+- name: Create directory for java deplyment
+  become: yes
+  file:
+    path: /root/app
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy file with owner and permissions
+  become: yes
+  copy:
+    src: "{{ item }}"
+    dest: /root/app/
+    owner: root
+    group: root
+    mode: '0755'
+  with_fileglob:
+    - "/home/halodoc/deploy/simple*"
+
+- name: Copy systemd service file to server 
+  become: yes
+  copy:
+    src: haloapp.service
+    dest: /etc/systemd/system
+    owner: root
+    group: root
+  notify:
+    - Start haloapp

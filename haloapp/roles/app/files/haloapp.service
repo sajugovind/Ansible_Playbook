@@ -1,0 +1,10 @@
+[Unit]
+Description=haloapp
+
+[Service]
+User=root
+Group=root
+Environment="PATH=/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+ExecStart=/usr/bin/java -jar /root/app/simple-application.jar server /root/app/simple.yml
+[Install]
+WantedBy=multi-user.target
